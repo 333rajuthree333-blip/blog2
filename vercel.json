@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "OPENROUTER_API_KEY": "@openrouter_api_key",
+    "CHATBOT_API_KEY": "@chatbot_api_key",
+    "JWT_SECRET_KEY": "@jwt_secret_key"
+  }
+}
