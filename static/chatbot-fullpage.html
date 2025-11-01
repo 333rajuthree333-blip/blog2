@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot - Full Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+    <style>
+        body {
+            background: #1a1a1a;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chatbot-fullpage {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            width: 100%;
+            background: #1a1a1a;
+            border-radius: 0;
+            box-shadow: none;
+        }
+
+        .chatbot-fullpage .chatbot-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 0;
+        }
+
+        .chatbot-fullpage .chatbot-messages {
+            flex: 1;
+            background: #2a2a2a;
+            padding: 30px;
+            border-radius: 0;
+        }
+
+        .chatbot-fullpage .chatbot-input-area {
+            background: #1a1a1a;
+            border-top: 1px solid #333;
+            padding: 30px;
+            border-radius: 0;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .back-button {
+                top: 10px;
+                left: 10px;
+                padding: 10px 16px;
+            }
+
+            .chatbot-fullpage .chatbot-messages {
+                padding: 20px;
+            }
+
+            .chatbot-fullpage .chatbot-input-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="goBack()">
+        <i class="fas fa-arrow-left"></i> Back to Site
+    </button>
+
+    <div style="position: fixed; top: 20px; right: 20px; z-index: 1001;">
+        <button class="btn btn-outline theme-toggle" id="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <div class="chatbot-container chatbot-fullpage">
+        <div class="chatbot-header">
+            <h3><i class="fas fa-robot"></i> AI Assistant - Full Screen</h3>
+            <div class="chatbot-header-buttons">
+                <button class="chatbot-close" onclick="goBack()">&times;</button>
+            </div>
+        </div>
+
+        <div class="chatbot-messages" id="chatbot-messages">
+            <div class="chat-message bot">
+                <strong>🤖 AI Assistant:</strong> Hello! I'm your intelligent assistant for technology and science questions. I can help you understand AI, quantum computing, space exploration, programming, and scientific discoveries. What would you like to know?
+            </div>
+        </div>
+
+        <div class="chatbot-typing" id="chatbot-typing">
+            <span class="typing-dots">AI is typing</span>
+        </div>
+
+        <div class="chatbot-input-area">
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatbot-input"
+                       placeholder="Ask me anything about technology and science..." maxlength="500">
+                <button class="chatbot-send" id="chatbot-send">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/chatbot-fullpage.js"></script>
+</body>
+</html>

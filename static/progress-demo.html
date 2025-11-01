@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Progress Bar Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .content-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .demo-section {
+            background: #f5f5f5;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .progress-demo {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .long-content {
+            padding: 20px;
+            line-height: 1.8;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .feature-item h3 {
+            color: #6366f1;
+            margin-top: 0;
+        }
+
+        .code-snippet {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+    </style>
+
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress" class="reading-progress">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+</head>
+<body>
+    <div class="content-section">
+        <h1>📊 Reading Progress Bar Demo</h1>
+        <p>This demo shows how the reading progress bar works on your blog posts. Scroll down to see the progress bar in action!</p>
+
+        <div class="demo-section">
+            <h2>✨ Features</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>🎨 Visual Progress</h3>
+                    <p>Smooth animated progress bar that fills as you scroll through the content.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Works perfectly on all devices - desktop, tablet, and mobile.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>⚡ Performance Optimized</h3>
+                    <p>Uses requestAnimationFrame and throttling for smooth 60fps performance.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🎯 User Engagement</h3>
+                    <p>Encourages users to scroll further and read more content.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>📈 SEO Benefits</h3>
+                    <p>Increases scroll depth metrics and improves user engagement scores.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🎪 Interactive</h3>
+                    <p>Click the progress bar to scroll back to top. Hover to see percentage.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress-demo">
+            <h2>🚀 How It Works</h2>
+
+            <h3>Implementation Code:</h3>
+            <div class="code-snippet">
+// HTML Structure
+&lt;div id="reading-progress" class="reading-progress"&gt;
+    &lt;div class="progress-bar" id="progress-bar"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+// JavaScript Logic
+function updateProgress() {
+    const scrollTop = window.pageYOffset;
+    const documentHeight = document.documentElement.scrollHeight;
+    const windowHeight = window.innerHeight;
+
+    const progress = scrollTop / (documentHeight - windowHeight);
+    const progressPercent = Math.min(progress * 100, 100);
+
+    progressBar.style.width = progressPercent + '%';
+}
+            </div>
+
+            <h3>CSS Styling:</h3>
+            <div class="code-snippet">
+.reading-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.1);
+    z-index: 10000;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    width: 0%;
+    transition: width 0.2s ease;
+}
+            </div>
+        </div>
+
+        <div class="long-content">
+            <h2>📖 Sample Blog Content</h2>
+
+            <h3>Introduction</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <h3>Main Content</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+
+            <h3>Technical Details</h3>
+            <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
+
+            <h3>Implementation Guide</h3>
+            <p>Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus.</p>
+
+            <p>Omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.</p>
+
+            <h3>Performance Benefits</h3>
+            <p>Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
+
+            <p>Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+
+            <h3>Conclusion</h3>
+            <p>Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
+            <h3>Final Thoughts</h3>
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            <p>Scroll back to the top by clicking the progress bar! 🎯</p>
+        </div>
+    </div>
+
+    <script>
+        // Reading Progress Bar Implementation
+        function initializeReadingProgress() {
+            const progressBar = document.getElementById('reading-progress');
+            const progressFill = document.getElementById('progress-bar');
+
+            if (!progressBar || !progressFill) return;
+
+            let isVisible = false;
+            let ticking = false;
+
+            function updateProgress() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const windowHeight = window.innerHeight;
+                        const documentHeight = Math.max(
+                            document.body.scrollHeight,
+                            document.body.offsetHeight,
+                            document.documentElement.clientHeight,
+                            document.documentElement.scrollHeight,
+                            document.documentElement.offsetHeight
+                        );
+
+                        // Calculate scroll progress
+                        const scrollableHeight = documentHeight - windowHeight;
+                        const progress = Math.min(scrollTop / scrollableHeight, 1);
+
+                        // Update progress bar
+                        const progressPercent = progress * 100;
+                        progressFill.style.width = progressPercent + '%';
+
+                        // Show/hide progress bar based on scroll position
+                        if (scrollTop > 100 && !isVisible) {
+                            progressBar.classList.add('visible');
+                            isVisible = true;
+                        } else if (scrollTop <= 100 && isVisible) {
+                            progressBar.classList.remove('visible');
+                            isVisible = false;
+                        }
+
+                        // Show percentage on hover
+                        progressBar.setAttribute('data-percentage', Math.round(progressPercent) + '%');
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            // Throttle scroll events for better performance
+            let scrollTimeout;
+            function throttledUpdate() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        updateProgress();
+                        scrollTimeout = null;
+                    }, 16); // ~60fps
+                }
+            }
+
+            // Listen for scroll events
+            window.addEventListener('scroll', throttledUpdate, { passive: true });
+
+            // Also listen for resize events to recalculate heights
+            window.addEventListener('resize', updateProgress, { passive: true });
+
+            // Initialize on load
+            setTimeout(updateProgress, 100);
+
+            // Add click to scroll to top
+            progressBar.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Show percentage on hover
+            progressBar.addEventListener('mouseenter', () => {
+                progressBar.classList.add('show-percentage');
+            });
+
+            progressBar.addEventListener('mouseleave', () => {
+                progressBar.classList.remove('show-percentage');
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeReadingProgress();
+        });
+    </script>
+</body>
+</html>

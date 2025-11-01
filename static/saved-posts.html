@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Posts - TechSci Blog</title>
+    <meta name="description" content="View and manage your saved posts for later reading.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Scripts -->
+    <script src="js/app.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="logo.svg" alt="ATB Tech Logo" class="logo-img" style="height: 40px; width: auto;">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#posts" class="nav-link">All Posts</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <select id="language-select" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="saved-posts-container">
+        <!-- Header -->
+        <div class="saved-posts-header">
+            <h1><i class="fas fa-bookmark"></i> Saved Posts</h1>
+            <p>Your personal collection of posts saved for later reading</p>
+
+            <!-- Stats -->
+            <div class="saved-posts-stats">
+                <div class="stat-item">
+                    <span class="stat-number" id="total-saved">0</span>
+                    <span class="stat-label">Total Saved</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="recent-saved">0</span>
+                    <span class="stat-label">This Week</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" id="reading-time">0</span>
+                    <span class="stat-label">Est. Read Time</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Saved Posts Grid -->
+        <div id="saved-posts-grid" class="saved-posts-grid">
+            <!-- Posts will be loaded here -->
+        </div>
+
+        <!-- Empty State -->
+        <div id="empty-state" class="empty-saved-posts" style="display: none;">
+            <i class="fas fa-bookmark"></i>
+            <h2>No Saved Posts Yet</h2>
+            <p>You haven't saved any posts for later reading. Start exploring and save posts you find interesting!</p>
+            <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                <i class="fas fa-search"></i> Explore Posts
+            </button>
+        </div>
+    </main>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading your saved posts...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadSavedPosts();
+            setupLanguageSelector();
+        });
+
+        // Load and display saved posts
+        function loadSavedPosts() {
+            showLoading(true);
+
+            try {
+                const bookmarks = bookmarkManager.getAllBookmarks();
+                const stats = bookmarkManager.getStats();
+
+                // Update stats
+                document.getElementById('total-saved').textContent = stats.totalBookmarks;
+
+                // Calculate recent bookmarks (last 7 days)
+                const sevenDaysAgo = new Date();
+                sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+                const recentCount = bookmarks.filter(bookmark =>
+                    new Date(bookmark.bookmarkedAt) > sevenDaysAgo
+                ).length;
+                document.getElementById('recent-saved').textContent = recentCount;
+
+                // Estimate reading time (assuming 200 words per minute)
+                const estimatedWords = bookmarks.reduce((total, bookmark) => {
+                    const excerptWords = (bookmark.excerpt || '').split(' ').length;
+                    return total + Math.max(excerptWords, 100); // Minimum 100 words per post
+                }, 0);
+                const readingTimeMinutes = Math.ceil(estimatedWords / 200);
+                document.getElementById('reading-time').textContent = readingTimeMinutes + 'm';
+
+                // Display posts
+                displaySavedPosts(bookmarks);
+
+            } catch (error) {
+                console.error('Error loading saved posts:', error);
+                showToast('Error loading saved posts', 'error');
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Display saved posts in grid
+        function displaySavedPosts(bookmarks) {
+            const grid = document.getElementById('saved-posts-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            if (bookmarks.length === 0) {
+                grid.style.display = 'none';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            emptyState.style.display = 'none';
+
+            grid.innerHTML = bookmarks.map(bookmark => `
+                <div class="saved-post-card">
+                    <div class="saved-post-content">
+                        <h3 class="saved-post-title">${bookmark.title}</h3>
+                        <p class="saved-post-excerpt">${bookmark.excerpt || 'No excerpt available'}</p>
+                        <div class="saved-post-meta">
+                            <span><i class="fas fa-user"></i> ${bookmark.author || 'Anonymous'}</span>
+                            <span><i class="fas fa-calendar"></i> Saved ${formatDate(bookmark.bookmarkedAt)}</span>
+                        </div>
+                        <div class="saved-post-actions">
+                            <button class="btn btn-primary" onclick="viewPost(${bookmark.id})">
+                                <i class="fas fa-eye"></i> Read Now
+                            </button>
+                            <button class="btn remove-bookmark-btn" onclick="removeBookmark(${bookmark.id})">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Remove bookmark
+        function removeBookmark(postId) {
+            if (confirm('Are you sure you want to remove this post from your saved list?')) {
+                bookmarkManager.removeBookmark(postId);
+                loadSavedPosts(); // Refresh the list
+            }
+        }
+
+        // Format date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffTime = Math.abs(now - date);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            if (diffDays === 0) {
+                return 'today';
+            } else if (diffDays === 1) {
+                return 'yesterday';
+            } else if (diffDays < 7) {
+                return diffDays + ' days ago';
+            } else {
+                return date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: date.getFullYear() !== now.getFullYear() ? 'numeric' : undefined
+                });
+            }
+        }
+
+        // Setup language selector
+        function setupLanguageSelector() {
+            const langSelect = document.getElementById('language-select');
+            const savedLang = localStorage.getItem('selectedLanguage') || 'en';
+            langSelect.value = savedLang;
+        }
+
+        // Language change handler
+        function changeLanguage(lang) {
+            localStorage.setItem('selectedLanguage', lang);
+            // Could reload content in different language if needed
+        }
+
+        // Utility functions
+        function showLoading(show) {
+            document.getElementById('loading').style.display = show ? 'flex' : 'none';
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast toast-${type}`;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        // View post function (from app.js)
+        function viewPost(postId) {
+            window.location.href = `post-detail.html?id=${postId}`;
+        }
+    </script>
+</body>
+</html>

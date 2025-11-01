@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+
+# Block admin and API paths
+Disallow: /api/admin/
+Disallow: /api/private/
+Disallow: /admin/
+
+# Allow important paths
+Allow: /api/posts/
+Allow: /api/pages/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
+
+# Search engine specific directives
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 5
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# Sitemap
+Sitemap: https://techsci-blog.com/sitemap.xml

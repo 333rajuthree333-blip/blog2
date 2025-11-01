@@ -1,0 +1,16 @@
+<svg width="160" height="45" viewBox="0 0 160 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="22.5" cy="22.5" r="20" fill="#DC143C"/>
+  
+  <!-- ATB Text in white inside circle -->
+  <text x="22.5" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white" text-anchor="middle">ATB</text>
+  
+  <!-- "Tech" text in black/red -->
+  <text x="50" y="30" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="#DC143C">Tech</text>
+  
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&amp;display=swap');
+    </style>
+  </defs>
+</svg>

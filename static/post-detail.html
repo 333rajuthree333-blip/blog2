@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Post Detail - AI-Powered Blog Platform</title>
+    <meta name="description" id="page-description" content="Read this interesting blog post about technology and science.">
+    <meta name="keywords" content="technology blog, science news, AI, machine learning, quantum computing">
+    <meta name="author" content="AI-Powered Blog Platform">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" id="canonical-url" href="https://techsci-blog.com/post-detail.html">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="YOUR_GOOGLE_VERIFICATION_CODE" />
+
+    <!-- Bing Webmaster Tools Verification -->
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+
+    <!-- Yahoo Site Explorer Verification -->
+    <meta name="y_key" content="YOUR_YAHOO_VERIFICATION_CODE" />
+    <meta name="yahoo-site-verification" content="YOUR_YAHOO_VERIFICATION_CODE" />
+
+    <!-- Baidu Verification (for Chinese market) -->
+    <meta name="baidu-site-verification" content="YOUR_BAIDU_VERIFICATION_CODE" />
+
+    <!-- Yandex Verification (for Russian market) -->
+    <meta name="yandex-verification" content="YOUR_YANDEX_VERIFICATION_CODE" />
+
+    <!-- DuckDuckGo specific meta -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#1a73e8" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" id="og-url" content="https://ai-powered-blog-platform.com/post-detail.html">
+    <meta property="og:title" id="og-title" content="Post Detail - AI-Powered Blog Platform">
+    <meta property="og:description" id="og-description" content="Read this interesting blog post about technology and science.">
+    <meta property="og:image" id="og-image" content="https://ai-powered-blog-platform.com/images/default-post-image.jpg">
+    <meta property="og:site_name" content="AI-Powered Blog Platform">
+    <meta property="og:locale" content="en_US">
+    <meta property="article:author" content="AI-Powered Blog Platform">
+    <meta property="article:published_time" id="article-published-time" content="">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" id="twitter-url" content="https://ai-powered-blog-platform.com/post-detail.html">
+    <meta property="twitter:title" id="twitter-title" content="Post Detail - AI-Powered Blog Platform">
+    <meta property="twitter:description" id="twitter-description" content="Read this interesting blog post about technology and science.">
+    <meta property="twitter:image" id="twitter-image" content="https://ai-powered-blog-platform.com/images/default-post-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_TRACKING_ID');
+    </script>
+
+    <!-- JSON-LD Structured Data for Article -->
+    <script type="application/ld+json" id="article-structured-data">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "",
+        "description": "",
+        "image": "",
+        "author": {
+            "@type": "Person",
+            "name": ""
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AI-Powered Blog Platform",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://ai-powered-blog-platform.com/images/logo.png"
+            }
+        },
+        "datePublished": "",
+        "dateModified": "",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": ""
+        },
+        "wordCount": "",
+        "articleSection": "Technology",
+        "keywords": ""
+    }
+    </script>
+            border-radius: 0.25rem;
+            background: var(--card-bg);
+            color: var(--text);
+            margin-left: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div id="reading-progress" class="reading-progress">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="logo.svg" alt="ATB Tech Logo" class="logo-img" style="height: 40px; width: auto;">
+                </a>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="index.html#posts" class="nav-link">All Posts</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="window.history.back()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <select id="language-select" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Detail Content -->
+    <section class="section" style="padding-top: 6rem;">
+        <div class="container">
+            <script src="js/post-detail.js"></script>
+            <script src="js/comments.js"></script>
+            <script src="js/chatbot.js"></script>
+            <div id="post-content"></div>
+        </div>
+    </section>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="js/app.js" defer></script>
+    <script src="js/comments.js" defer></script>
+    <script src="js/chatbot.js" defer></script>
+
+    <!-- ResponsiveVoice.js for Text-to-Speech -->
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=YOUR_KEY"></script>
+
+    <!-- Voice Reader Functionality -->
+    <script>
+        // Voice Reader State
+        let isVoiceReading = false;
+        let currentVoiceLanguage = 'en-US';
+        let currentVoiceRate = 1.0;
+
+        // Initialize voice reader
+        function initializeVoiceReader() {
+            // Check if ResponsiveVoice is loaded
+            if (typeof responsiveVoice !== 'undefined') {
+                console.log('Voice reader initialized');
+
+                // Set default language based on selected language
+                const urlParams = new URLSearchParams(window.location.search);
+                const lang = urlParams.get('lang') || 'en';
+                switch(lang) {
+                    case 'bn':
+                        currentVoiceLanguage = 'bn-BD';
+                        break;
+                    case 'hi':
+                        currentVoiceLanguage = 'hi-IN';
+                        break;
+                    default:
+                        currentVoiceLanguage = 'en-US';
+                }
+
+                // Update UI
+                document.getElementById('voice-language').value = currentVoiceLanguage;
+                updateVoiceRate();
+
+                // Enable voice button
+                document.getElementById('voice-play-btn').disabled = false;
+
+                // Check for supported voices
+                responsiveVoice.OnVoiceReady = function() {
+                    console.log('Voice ready:', responsiveVoice.getVoices());
+                };
+
+            } else {
+                console.warn('ResponsiveVoice not loaded');
+                document.getElementById('voice-play-btn').disabled = true;
+                document.getElementById('voice-btn-text').textContent = 'Voice Unavailable';
+            }
+        }
+
+        // Toggle voice reading
+        function toggleVoiceReading() {
+            if (isVoiceReading) {
+                stopVoiceReading();
+            } else {
+                startVoiceReading();
+            }
+        }
+
+        // Start voice reading
+        function startVoiceReading() {
+            if (typeof responsiveVoice === 'undefined') {
+                alert('Voice reading is not available. Please check your internet connection.');
+                return;
+            }
+
+            // Get post content
+            const postTitle = document.querySelector('.post-title')?.textContent || '';
+            const postContent = document.querySelector('.post-content')?.textContent || '';
+
+            if (!postContent.trim()) {
+                alert('No content available to read.');
+                return;
+            }
+
+            // Prepare text to read (title + content)
+            const textToRead = `${postTitle}. ${postContent}`;
+
+            // Update UI
+            isVoiceReading = true;
+            updateVoiceButton('pause', 'Pause');
+
+            // Speak the text
+            responsiveVoice.speak(textToRead, currentVoiceLanguage, {
+                rate: currentVoiceRate,
+                onstart: function() {
+                    console.log('Voice reading started');
+                },
+                onend: function() {
+                    console.log('Voice reading completed');
+                    stopVoiceReading();
+                },
+                onerror: function(error) {
+                    console.error('Voice reading error:', error);
+                    stopVoiceReading();
+                    alert('Error occurred during voice reading. Please try again.');
+                }
+            });
+        }
+
+        // Stop voice reading
+        function stopVoiceReading() {
+            if (typeof responsiveVoice !== 'undefined') {
+                responsiveVoice.cancel();
+            }
+
+            isVoiceReading = false;
+            updateVoiceButton('play', 'Listen');
+        }
+
+        // Update voice button appearance
+        function updateVoiceButton(icon, text) {
+            const button = document.getElementById('voice-play-btn');
+            const iconElement = button.querySelector('i');
+            const textElement = document.getElementById('voice-btn-text');
+
+            // Update icon
+            iconElement.className = `fas fa-${icon}`;
+
+            // Update text
+            textElement.textContent = text;
+
+            // Update button state
+            if (isVoiceReading) {
+                button.classList.add('voice-active');
+            } else {
+                button.classList.remove('voice-active');
+            }
+        }
+
+        // Change voice language
+        function changeVoiceLanguage() {
+            const select = document.getElementById('voice-language');
+            currentVoiceLanguage = select.value;
+
+            // Stop current reading if active
+            if (isVoiceReading) {
+                stopVoiceReading();
+            }
+
+            // Save preference
+            localStorage.setItem('voiceLanguage', currentVoiceLanguage);
+        }
+
+        // Update voice rate
+        function updateVoiceRate() {
+            const rateInput = document.getElementById('voice-rate');
+            const rateValue = document.getElementById('rate-value');
+
+            currentVoiceRate = parseFloat(rateInput.value);
+            rateValue.textContent = currentVoiceRate.toFixed(1) + 'x';
+
+            // Save preference
+            localStorage.setItem('voiceRate', currentVoiceRate);
+        }
+
+        // Load saved preferences
+        function loadVoicePreferences() {
+            const savedLanguage = localStorage.getItem('voiceLanguage');
+            const savedRate = localStorage.getItem('voiceRate');
+
+            if (savedLanguage) {
+                currentVoiceLanguage = savedLanguage;
+                document.getElementById('voice-language').value = savedLanguage;
+            }
+
+            if (savedRate) {
+                currentVoiceRate = parseFloat(savedRate);
+                document.getElementById('voice-rate').value = currentVoiceRate;
+                document.getElementById('rate-value').textContent = currentVoiceRate.toFixed(1) + 'x';
+            }
+        }
+
+        // Keyboard shortcuts for voice control
+        document.addEventListener('keydown', function(e) {
+            // Space bar to toggle voice reading
+            if (e.code === 'Space' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+                e.preventDefault();
+                toggleVoiceReading();
+            }
+
+            // Escape to stop voice reading
+            if (e.code === 'Escape') {
+                stopVoiceReading();
+            }
+        });
+
+        // Initialize voice reader when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            loadVoicePreferences();
+
+            // Initialize voice reader after a short delay to ensure ResponsiveVoice loads
+            setTimeout(initializeVoiceReader, 1000);
+        });
+
+        // Handle page visibility change (pause when tab is not visible)
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden && isVoiceReading) {
+                // Optionally pause when tab becomes hidden
+                // stopVoiceReading(); // Uncomment if you want to auto-pause
+            }
+        });
+    </script>
+
+    <script>
+        // API Base URL
+        const API_BASE_URL = 'http://localhost:8080/api';
+
+        // Get post ID and language from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+        const lang = urlParams.get('lang') || 'en';
+
+        // Set the language selector
+        document.getElementById('language-select').value = lang;
+
+        if (postId) {
+            loadPostDetail(postId, lang);
+        } else {
+            document.getElementById('post-content').innerHTML = '<p class="text-center">Post not found.</p>';
+        }
+
+        // Footer text translations
+        const footerTexts = {
+            en: "&copy; 2025 All rights reserved: Technology and Science Edition",
+            bn: "&copy; ২০২৫ সর্বস্বত্ব সংরক্ষিত: প্রযুক্তি ও বিজ্ঞান সংস্করণ",
+            hi: "&copy; २०२५ सर्वाधिकार सुरक्षित: प्रौद्योगिकी और विज्ञान संस्करण"
+        };
+
+        // Update footer text based on language
+        function updateFooterText() {
+            const footerBottom = document.querySelector('.footer-bottom p');
+            if (footerBottom) {
+                footerBottom.innerHTML = footerTexts[lang] || footerTexts['en'];
+            }
+        }
+
+        // Footer links translations
+        const footerLinks = {
+            en: [
+                {slug: 'about', title: 'About Us'},
+                {slug: 'advertisement', title: 'Advertisement'},
+                {slug: 'circulation', title: 'Circulation'},
+                {slug: 'terms', title: 'Terms and Conditions'},
+                {slug: 'contact', title: 'Contact'},
+                {slug: 'newsletter', title: 'Newsletter'},
+                {slug: 'report', title: 'Report'}
+            ],
+            bn: [
+                {slug: 'about', title: 'আমাদের সম্পর্কে'},
+                {slug: 'advertisement', title: 'বিজ্ঞাপন'},
+                {slug: 'circulation', title: 'সার্কুলেশন'},
+                {slug: 'terms', title: 'নীতি ও শর্ত'},
+                {slug: 'contact', title: 'যোগাযোগ'},
+                {slug: 'newsletter', title: 'নিউজলেটার'},
+                {slug: 'report', title: 'রিপোর্ট করুন'}
+            ],
+            hi: [
+                {slug: 'about', title: 'हमारे बारे में'},
+                {slug: 'advertisement', title: 'विज्ञापन'},
+                {slug: 'circulation', title: 'परिसंचरण'},
+                {slug: 'terms', title: 'नीति और शर्तें'},
+                {slug: 'contact', title: 'संपर्क'},
+                {slug: 'newsletter', title: 'समाचार पत्रिका'},
+                {slug: 'report', title: 'रिपोर्ट करें'}
+            ]
+        };
+
+        // Update footer links based on language
+        function updateFooterLinks() {
+            const links = footerLinks[lang] || footerLinks['en'];
+            const container = document.getElementById('footer-pages');
+            if (container) {
+                container.innerHTML = links.map(page => {
+                    const pageFile = `${page.slug}.html`;
+                    return `<a href="${pageFile}">${page.title}</a>`;
+                }).join(' ');
+            }
+        }
+
+        // Call update footer links
+        updateFooterLinks();
+        updateFooterText();
+
+        // Change language
+        function changeLanguage(newLang) {
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('lang', newLang);
+            window.location.href = newUrl.toString();
+        }
+
+        async function loadPostDetail(postId, lang) {
+            document.getElementById('loading').style.display = 'flex';
+            try {
+                const response = await fetch(`${API_BASE_URL}/posts/${postId}?lang=${lang}`);
+                const result = await response.json();
+                if (result.success) {
+                    const post = result.data;
+                    displayPostDetail(post);
+
+                    // Update SEO meta tags dynamically
+                    updateSEOMetaTags(post);
+
+                    // Update structured data dynamically
+                    updateStructuredData(post);
+
+                    document.title = post.title + ' - Technology & Science Blog';
+                } else {
+                    document.getElementById('post-content').innerHTML = '<p class="text-center">Post not found.</p>';
+                }
+            } catch (error) {
+                console.error('Error loading post:', error);
+                document.getElementById('post-content').innerHTML = '<p class="text-center">Error loading post.</p>';
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function updateSEOMetaTags(post) {
+            // Update title
+            document.getElementById('page-title').textContent = post.title + ' - Technology & Science Blog';
+
+            // Update meta description
+            const metaDesc = document.getElementById('page-description');
+            metaDesc.content = post.excerpt || post.content.substring(0, 160) + '...';
+
+            // Update Open Graph tags
+            document.getElementById('og-title').content = post.title;
+            document.getElementById('og-description').content = post.excerpt || post.content.substring(0, 160) + '...';
+            document.getElementById('og-url').content = window.location.href;
+            document.getElementById('twitter-title').content = post.title;
+            document.getElementById('twitter-description').content = post.excerpt || post.content.substring(0, 160) + '...';
+            document.getElementById('twitter-url').content = window.location.href;
+
+            // Update canonical URL
+            document.getElementById('canonical-url').href = window.location.href;
+
+            // Update article published time
+            if (post.publishedAt) {
+                document.getElementById('article-published-time').content = new Date(post.publishedAt).toISOString();
+            }
+
+            // Update image if available
+            if (post.featuredImage) {
+                document.getElementById('og-image').content = post.featuredImage;
+                document.getElementById('twitter-image').content = post.featuredImage;
+            }
+        }
+
+        function updateStructuredData(post) {
+            // Use schemas provided by the API
+            if (post.schemas) {
+                let structuredDataHtml = '';
+
+                // Article schema (always included)
+                if (post.schemas.article) {
+                    structuredDataHtml += `<script type="application/ld+json">${post.schemas.article}</script>`;
+                }
+
+                // FAQ schema (if available)
+                if (post.schemas.faq) {
+                    structuredDataHtml += `<script type="application/ld+json">${post.schemas.faq}</script>`;
+                }
+
+                // Software schema (if available)
+                if (post.schemas.software) {
+                    structuredDataHtml += `<script type="application/ld+json">${post.schemas.software}</script>`;
+                }
+
+                // Update the structured data script element
+                const structuredDataElement = document.getElementById('article-structured-data');
+                if (structuredDataElement) {
+                    structuredDataElement.innerHTML = structuredDataHtml;
+                } else {
+                    // Create the element if it doesn't exist
+                    const scriptElement = document.createElement('div');
+                    scriptElement.id = 'article-structured-data';
+                    scriptElement.innerHTML = structuredDataHtml;
+                    document.head.appendChild(scriptElement);
+                }
+            }
+        }
+
+        // Initialize reading progress bar when post is loaded
+        function initializeReadingProgress() {
+            const progressBar = document.getElementById('reading-progress');
+            const progressFill = document.getElementById('progress-bar');
+
+            if (!progressBar || !progressFill) return;
+
+            let isVisible = false;
+            let ticking = false;
+
+            function updateProgress() {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                        const windowHeight = window.innerHeight;
+                        const documentHeight = Math.max(
+                            document.body.scrollHeight,
+                            document.body.offsetHeight,
+                            document.documentElement.clientHeight,
+                            document.documentElement.scrollHeight,
+                            document.documentElement.offsetHeight
+                        );
+
+                        // Calculate scroll progress
+                        const scrollableHeight = documentHeight - windowHeight;
+                        const progress = Math.min(scrollTop / scrollableHeight, 1);
+
+                        // Update progress bar
+                        const progressPercent = progress * 100;
+                        progressFill.style.width = progressPercent + '%';
+
+                        // Show/hide progress bar based on scroll position
+                        if (scrollTop > 100 && !isVisible) {
+                            progressBar.classList.add('visible');
+                            isVisible = true;
+                        } else if (scrollTop <= 100 && isVisible) {
+                            progressBar.classList.remove('visible');
+                            isVisible = false;
+                        }
+
+                        // Optional: Show percentage tooltip on hover
+                        progressBar.setAttribute('data-percentage', Math.round(progressPercent) + '%');
+
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+
+            // Throttle scroll events for better performance
+            let scrollTimeout;
+            function throttledUpdate() {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        updateProgress();
+                        scrollTimeout = null;
+                    }, 16); // ~60fps
+                }
+            }
+
+            // Listen for scroll events
+            window.addEventListener('scroll', throttledUpdate, { passive: true });
+
+            // Also listen for resize events to recalculate heights
+            window.addEventListener('resize', updateProgress, { passive: true });
+
+            // Initialize on load
+            setTimeout(updateProgress, 100);
+
+            // Optional: Add click to scroll to top
+            progressBar.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Optional: Show percentage on hover
+            progressBar.addEventListener('mouseenter', () => {
+                progressBar.classList.add('show-percentage');
+            });
+
+        function displayPostDetail(post) {
+            const postUrl = encodeURIComponent(window.location.href);
+            const postTitle = encodeURIComponent(post.title);
+
+            document.getElementById('post-content').innerHTML = `
+                <article class="post-detail">
+                    <header class="post-header">
+                        <h1 class="post-title">${post.title}</h1>
+                        <div class="post-meta">
+                            <span class="meta-item"><i class="fas fa-user"></i> ${post.author || 'Anonymous'}</span>
+                            <span class="meta-item"><i class="fas fa-calendar"></i> ${formatDate(post.createdAt)}</span>
+                            <span class="meta-item"><i class="fas fa-eye"></i> ${post.viewCount} views</span>
+                            ${post.isAiGenerated ? '<span class="meta-item ai-badge"><i class="fas fa-robot"></i> AI Generated</span>' : ''}
+                        </div>
+                        <div class="social-share">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u=${postUrl}" target="_blank" class="social-share-btn facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://twitter.com/intent/tweet?text=${postTitle}&url=${postUrl}" target="_blank" class="social-share-btn twitter">
+                                <i class="fab fa-x-twitter"></i>
+                            </a>
+                            <a href="javascript:void(0)" onclick="sharePost(\`${post.title}\`, \`${window.location.origin}/post-detail.html?id=${post.id}\`)" class="social-share-btn share">
+                                <i class="fas fa-share-alt"></i>
+                            </a>
+                            <a href="https://wa.me/?text=${postTitle}%20${postUrl}" target="_blank" class="social-share-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="javascript:window.print()" class="social-share-btn print">
+                                <i class="fas fa-print"></i>
+                            </a>
+                        </div>
+
+                        <!-- Voice Reader Controls -->
+                        <div class="voice-reader-controls">
+                            <button id="voice-play-btn" class="voice-btn voice-play" onclick="toggleVoiceReading()">
+                                <i class="fas fa-play"></i>
+                                <span id="voice-btn-text">Listen</span>
+                            </button>
+                            <div class="voice-settings">
+                                <select id="voice-language" onchange="changeVoiceLanguage()">
+                                    <option value="en-US">English (US)</option>
+                                    <option value="en-GB">English (UK)</option>
+                                    <option value="bn-BD">বাংলা</option>
+                                    <option value="hi-IN">हिंदी</option>
+                                </select>
+                                <input type="range" id="voice-rate" min="0.5" max="2" step="0.1" value="1" onchange="updateVoiceRate()">
+                                <label for="voice-rate" class="voice-rate-label">Speed: <span id="rate-value">1x</span></label>
+                            </div>
+                        </div>
+                    </header>
+
+                    ${post.featuredImage ? `<div class="post-featured-image"><img src="${post.featuredImage}" alt="${post.title}"></div>` : ''}
+
+                    <div class="post-body">
+                        <div class="post-content" style="line-height: 1.8; white-space: pre-wrap;">${post.content}</div>
+                    </div>
+
+                    <footer class="post-footer">
+                        <div class="post-tags">
+                            ${(post.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
+                    </footer>
+                </article>
+
+                <!-- Comments Section -->
+                <div class="comments-section">
+                    <h3 class="comments-title">
+                        <i class="fas fa-comments"></i> Comments
+                        <span class="comment-count" id="comment-count">(0)</span>
+                    </h3>
+
+                    <!-- Comment Form -->
+                    <div class="comment-form-container">
+                        <h4>Leave a Comment</h4>
+                        <form id="comment-form" class="comment-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="comment-author">Name *</label>
+                                    <input type="text" id="comment-author" name="authorName" required maxlength="100">
+                                </div>
+                                <div class="form-group">
+                                    <label for="comment-email">Email *</label>
+                                    <input type="email" id="comment-email" name="authorEmail" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-website">Website (optional)</label>
+                                <input type="url" id="comment-website" name="authorWebsite" placeholder="https://">
+                            </div>
+                            <div class="form-group">
+                                <label for="comment-content">Comment *</label>
+                                <textarea id="comment-content" name="content" rows="5" required
+                                          maxlength="2000" placeholder="Share your thoughts..."></textarea>
+                                <small class="char-count"><span id="char-count">0</span>/2000 characters</small>
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="submit-comment">
+                                <i class="fas fa-paper-plane"></i> Post Comment
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Comments List -->
+                    <div class="comments-list" id="comments-list">
+                        <!-- Comments will be loaded here -->
+                    </div>
+
+                    <!-- Load More Comments -->
+                    <div class="load-more-container" id="load-more-container" style="display: none;">
+                        <button class="btn btn-outline" id="load-more-comments">
+                            <i class="fas fa-plus"></i> Load More Comments
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            // Initialize reading progress bar after content is loaded
+            setTimeout(initializeReadingProgress, 500);
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        async function sharePost(title, url) {
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: title,
+                        url: url
+                    });
+                } catch (error) {
+                    console.log('Share cancelled');
+                }
+            } else {
+                navigator.clipboard.writeText(url);
+                showToast('Link copied to clipboard!', 'success');
+            }
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast toast-${type}`;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Technology & Science</h4>
+                    <p>Your source for the latest in technology and scientific discoveries.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links" id="footer-pages">
+                        <!-- Footer links will be loaded here -->
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; ২০২৫ সর্বস্বত্ব সংরক্ষিত: প্রযুক্তি ও বিজ্ঞান সংস্করণ</p>
+            </div>
+        </div>
+    </footer>

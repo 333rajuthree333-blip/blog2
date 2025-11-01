@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circulation - Technology & Science Blog</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/chatbot.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <a href="index.html" class="logo">TechSci</a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn btn-outline" onclick="history.back()">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <select id="language-select" class="language-select" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="bn">বাংলা</option>
+                    <option value="hi">हिंदी</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-section">
+            <div id="page-content">
+                <h1>Circulation</h1>
+                <div class="page-text">
+                    <p>Learn about our circulation and distribution policies. We strive to reach readers worldwide with quality content.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Technology & Science</h4>
+                    <p>Your source for the latest in technology and scientific discoveries.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <div class="footer-links">
+                        <a href="about.html">About Us</a>
+                        <a href="advertisement.html">Advertisement</a>
+                        <a href="circulation.html">Circulation</a>
+                        <a href="terms.html">Terms and Conditions</a>
+                        <a href="contact.html">Contact</a>
+                        <a href="newsletter.html">Newsletter</a>
+                        <a href="report.html">Report</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 All rights reserved: Technology and Science Edition</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let selectedLanguage = 'en';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            selectedLanguage = localStorage.getItem('selectedLanguage') || 'en';
+            document.getElementById('language-select').value = selectedLanguage;
+            loadPageContent();
+        });
+
+        function changeLanguage(lang) {
+            selectedLanguage = lang;
+            localStorage.setItem('selectedLanguage', lang);
+            loadPageContent();
+        }
+
+        async function loadPageContent() {
+            try {
+                const response = await fetch(`http://localhost:8080/api/pages/circulation?lang=${selectedLanguage}`);
+                const result = await response.json();
+                if (result.success) {
+                    const page = result.data;
+                    document.getElementById('page-content').innerHTML = `
+                        <h1>${page.title}</h1>
+                        <div class="page-text" style="line-height: 1.8; white-space: pre-wrap;">${page.content}</div>
+                    `;
+                    document.title = `${page.title} - Technology & Science Blog`;
+                }
+            } catch (error) {
+                console.error('Error loading page:', error);
+            }
+        }
+    </script>
+    <script src="js/chatbot.js"></script>
+</body>
+</html>

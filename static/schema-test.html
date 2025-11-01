@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schema Markup Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .schema-test { background: #f5f5f5; padding: 20px; margin: 20px 0; border-radius: 8px; }
+        .schema-json { background: #2d3748; color: #e2e8f0; padding: 15px; border-radius: 4px; font-family: monospace; white-space: pre-wrap; }
+        .test-results { margin-top: 20px; }
+        .success { color: #38a169; }
+        .error { color: #e53e3e; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Schema Markup Test Tool</h1>
+    <p>This tool helps validate that your blog posts have proper Schema.org structured data for rich snippets.</p>
+
+    <div class="schema-test">
+        <h2>Test Your Post Schema</h2>
+        <p>Enter a post ID to check its schema markup:</p>
+        <input type="number" id="postId" placeholder="Enter post ID" value="1">
+        <button onclick="testSchema()">Test Schema</button>
+    </div>
+
+    <div id="results" class="test-results">
+        <!-- Results will appear here -->
+    </div>
+
+    <script>
+        async function testSchema() {
+            const postId = document.getElementById('postId').value;
+            const resultsDiv = document.getElementById('results');
+
+            if (!postId) {
+                resultsDiv.innerHTML = '<p class="error">Please enter a post ID</p>';
+                return;
+            }
+
+            resultsDiv.innerHTML = '<p>Testing schema for post ID: ' + postId + '...</p>';
+
+            try {
+                const response = await fetch(`/api/posts/${postId}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    const post = result.data;
+                    let html = '<h2>✅ Schema Test Results</h2>';
+
+                    html += '<h3>Post Information:</h3>';
+                    html += `<p><strong>Title:</strong> ${post.title}</p>`;
+                    html += `<p><strong>Author:</strong> ${post.author}</p>`;
+                    html += `<p><strong>Published:</strong> ${new Date(post.createdAt).toLocaleDateString()}</p>`;
+
+                    html += '<h3>Schema Markup Generated:</h3>';
+
+                    if (post.schemas) {
+                        // Article Schema
+                        if (post.schemas.article) {
+                            html += '<h4>📄 Article Schema:</h4>';
+                            html += '<div class="schema-json">' + post.schemas.article + '</div>';
+                        }
+
+                        // FAQ Schema
+                        if (post.schemas.faq) {
+                            html += '<h4>❓ FAQ Schema:</h4>';
+                            html += '<div class="schema-json">' + post.schemas.faq + '</div>';
+                        }
+
+                        // Software Schema
+                        if (post.schemas.software) {
+                            html += '<h4>💻 Software Schema:</h4>';
+                            html += '<div class="schema-json">' + post.schemas.software + '</div>';
+                        }
+
+                        html += '<h3>🎯 Expected Rich Snippets:</h3>';
+                        html += '<ul>';
+                        html += '<li>⭐ <strong>Star Ratings</strong> - If software reviews are detected</li>';
+                        html += '<li>💬 <strong>FAQ Section</strong> - If Q&A content is found</li>';
+                        html += '<li>📅 <strong>Article Dates</strong> - Publication and modification dates</li>';
+                        html += '<li>👤 <strong>Author Info</strong> - Author name and publication details</li>';
+                        html += '<li>🏷️ <strong>Breadcrumbs</strong> - Navigation path</li>';
+                        html += '</ul>';
+                    } else {
+                        html += '<p class="error">No schema markup found for this post.</p>';
+                    }
+
+                    html += '<h3>🔍 Google Rich Results Test:</h3>';
+                    html += '<p>Use <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> to validate:</p>';
+                    html += '<ol>';
+                    html += '<li>Go to the post detail page</li>';
+                    html += '<li>Copy the page URL</li>';
+                    html += '<li>Paste URL in Google Rich Results Test</li>';
+                    html += '<li>Check for Article, FAQ, or Software Application rich snippets</li>';
+                    html += '</ol>';
+
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = '<p class="error">Post not found or error occurred.</p>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = '<p class="error">Error testing schema: ' + error.message + '</p>';
+            }
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', function() {
+            setTimeout(testSchema, 1000);
+        });
+    </script>
+</body>
+</html>
